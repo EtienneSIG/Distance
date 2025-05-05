@@ -43,7 +43,7 @@ st.title("Zones accessibles sur carte")
 # Configuration de la clé API
 ORS_API_KEY = st.sidebar.text_input(
     "Clé API OpenRouteService",
-    value="5b3ce3597851110001cf624835276b9e49294dcfb180c8e7a4674bf5",  # Vous pouvez remplacer par votre propre clé
+    value="",  # Vous pouvez remplacer par votre propre clé
     type="password",
     help="Obtenez une clé API gratuite sur https://openrouteservice.org/dev/#/signup"
 )
