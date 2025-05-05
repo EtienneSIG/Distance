@@ -1,4 +1,6 @@
-streamlit
-folium
-streamlit-folium
-requests
+streamlit>=1.28.0
+folium>=0.14.0
+streamlit-folium>=0.13.0
+requests>=2.31.0
+shapely>=2.0.0
+pandas>=2.0.0
