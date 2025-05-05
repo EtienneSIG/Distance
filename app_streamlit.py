@@ -35,6 +35,8 @@ if 'map_center' not in st.session_state:
     st.session_state.map_center = [st.session_state.lat, st.session_state.lon]
 if 'map_zoom' not in st.session_state:
     st.session_state.map_zoom = 14
+if 'map_height' not in st.session_state:
+    st.session_state.map_height = 70  # Hauteur par défaut en pourcentage de la hauteur de la fenêtre
 
 st.title("Zones accessibles sur carte")
 
@@ -370,6 +372,10 @@ def get_screen_width_percentage(percentage=95):
     """Retourne une largeur en pixels basée sur un pourcentage de la largeur de l'écran"""
     return f"{percentage}%"
 
+def get_screen_height_percentage(percentage=70):
+    """Retourne une hauteur en pixels basée sur un pourcentage de la hauteur de l'écran"""
+    return f"{percentage}vh"  # vh = viewport height, s'adapte à la hauteur de la fenêtre
+
 # Sélection de la méthode pour définir le point de départ
 st.sidebar.subheader("Choix du point de départ")
 start_point_method = st.sidebar.radio(
@@ -395,17 +401,14 @@ with col1:
     # Créer et afficher la carte unique avec adaptation à l'écran
     map_object = create_map()
     
-    # Calculer la largeur de la carte en fonction de la taille disponible
-    map_width = get_screen_width_percentage(98) # 98% de la largeur de la colonne
+    # Définir une hauteur fixe en pixels pour garantir la visibilité de la carte
+    fixed_height = 600
     
-    # Calculer une hauteur qui s'adapte à la taille de l'écran
-    # La hauteur dépend de la largeur pour maintenir un ratio d'aspect correct
-    map_height = 500
-    
+    # Afficher la carte avec une hauteur fixe
     clicked_data = st_folium(
         map_object, 
-        width=map_width, 
-        height=map_height,
+        width="100%", 
+        height=fixed_height,
         key="unified_map",
         returned_objects=["last_clicked", "center", "zoom"]
     )
@@ -450,7 +453,7 @@ with col2:
         key="mode_selector"
     )
     st.session_state.mode = mode
-    
+
     # Option pour afficher la réponse brute
     show_raw_response = st.checkbox("Afficher la réponse brute de l'API", value=False, key="show_raw")
     
