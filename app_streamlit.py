@@ -50,7 +50,7 @@ ORS_API_KEY = st.sidebar.text_input(
 
 if not ORS_API_KEY:
     st.warning("Veuillez entrer une clé API OpenRouteService pour utiliser cette application")
-    st.stop()
+    #st.stop()
 
 # Fonction pour géocoder une adresse - version améliorée
 def geocode_address(address):
